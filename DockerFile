@@ -1,0 +1,11 @@
+FROM python:3.10.5-slim-buster
+
+COPY requirements.txt /usr/src/app/
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+
+RUN apt-get update && apt-get install -y gosu
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["python", "main.py"]
